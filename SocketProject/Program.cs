@@ -1,38 +1,40 @@
 ﻿using System.Net;
 using System.Net.Sockets;
-
-IPAddress IP = IPAddress.Parse("192.168.113.2");
-IPEndPoint ep = new IPEndPoint(IP, 80);
-Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Stream,
-    ProtocolType.IP);
-try
+do
 {
-    s.Connect(ep);
-    if (s.Connected)
+    IPAddress IP = IPAddress.Parse("192.168.113.2");
+    IPEndPoint ep = new IPEndPoint(IP, 80);
+    Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Stream,
+        ProtocolType.IP);
+    try
     {
-        string strEnd = "GET\r\n\r\n";
-        s.Send(System.Text.Encoding.ASCII.GetBytes(strEnd));
-        byte[] buffer = new byte[1024];
-        int l;
-        do
+        s.Connect(ep);
+        if (s.Connected)
         {
-            l = s.Receive(buffer);
-            Console.WriteLine(System.Text.Encoding.ASCII.
-                GetString(buffer,0,l));
+            string strEnd = Console.ReadLine()!;
+            s.Send(System.Text.Encoding.Unicode.GetBytes(strEnd));
+            byte[] buffer = new byte[1024];
+            int l;
+            do
+            {
+                l = s.Receive(buffer);
+                Console.WriteLine(System.Text.Encoding.Unicode.
+                    GetString(buffer, 0, l));
+            }
+            while (l > 0);
         }
-        while (l>0);
+        else
+        {
+            Console.WriteLine("Соединения нет");
+        }
     }
-    else
+    catch (SocketException ex)
     {
-        Console.WriteLine("Соединения нет");
+        Console.WriteLine(ex.Message);
     }
-}
-catch(SocketException ex)
-{
-    Console.WriteLine(ex.Message);
-}
-finally
-{
-    s.Shutdown(SocketShutdown.Both);
-    s.Close();
-}
+    finally
+    {
+        s.Shutdown(SocketShutdown.Both);
+        s.Close();
+    }
+} while (true);
