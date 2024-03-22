@@ -29,7 +29,43 @@ namespace AsyncServer
         {
             while (true)
             {
-
+                try
+                {
+                    while (s != null)
+                    {
+                        Socket ns = s.Accept();
+                        Console.WriteLine(ns.RemoteEndPoint!.ToString());
+                        ConnectDelegate cd = new ConnectDelegate(Server_Connect);
+                        cd.BeginInvoke(ns, null, null);
+                    }
+                }
+                catch(SocketException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+        public void Start ()
+        {
+            if (socket != null) return;
+            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream,
+                ProtocolType.IP);
+            socket.Bind(endP!);
+            socket.Listen(10);
+            StartNetwork start = new StartNetwork(Server_Begin);
+            start.BeginInvoke(socket, null, null);
+        }
+        public void Stop ()
+        {
+            if (socket != null)
+            {
+                try
+                {
+                    socket.Shutdown(SocketShutdown.Both);
+                    socket.Close();
+                    socket = null;
+                }
+                catch(SocketException ex){}
             }
         }
     }
