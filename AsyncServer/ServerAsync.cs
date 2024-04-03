@@ -28,8 +28,21 @@ namespace AsyncServer
         } 
         void MySendCallbackFunction ( IAsyncResult ia)
         {
-
+            Socket ns = (Socket)ia.AsyncState!;
+            int n = ((Socket)ia.AsyncState!).EndSend(ia);
+            ns.Shutdown(SocketShutdown.Send);
+            ns.Close();
         }
        
+        public void Start()
+        {
+            if (socket != null) return;
+            socket = new Socket(AddressFamily.InterNetwork,
+                SocketType.Stream,ProtocolType.IP);
+            socket.Bind(endP!);
+            socket.Listen(10);
+            socket.BeginAccept(new AsyncCallback(MyAcceptCallbackFunction),
+                socket);
+        }
     }
 }
