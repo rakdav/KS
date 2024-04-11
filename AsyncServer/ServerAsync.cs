@@ -10,8 +10,8 @@ namespace AsyncServer
 {
     internal class ServerAsync
     {
-        IPEndPoint? endP;
-        Socket? socket;
+        IPEndPoint endP;
+        Socket socket;
         public ServerAsync ( string strAddr, int port)
         {
             this.endP = new IPEndPoint(IPAddress.Parse(strAddr),port);
@@ -23,12 +23,12 @@ namespace AsyncServer
             Console.WriteLine(ns.RemoteEndPoint!.ToString());
             byte[] sendBuffer = System.Text.Encoding.Unicode.GetBytes(DateTime.Now.ToString());
             ns.BeginSend(sendBuffer, 0, sendBuffer.Length,SocketFlags.None,
-                new AsyncCallback(MySendCallbackFunction), socket);
-            ns.BeginAccept(new AsyncCallback(MyAcceptCallbackFunction),socket);
+                new AsyncCallback(MySendCallbackFunction), ns);
+            socket.BeginAccept(new AsyncCallback(MyAcceptCallbackFunction),socket);
         } 
         void MySendCallbackFunction ( IAsyncResult ia)
         {
-            Socket ns = (Socket)ia.AsyncState!;
+            Socket ns = (Socket)ia.AsyncState;
             int n = ((Socket)ia.AsyncState!).EndSend(ia);
             ns.Shutdown(SocketShutdown.Send);
             ns.Close();
