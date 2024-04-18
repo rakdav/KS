@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncServer", "AsyncServer\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UDPSocket", "UDPSocket\UDPSocket.csproj", "{D4172D79-AAB6-485E-898E-F5EBFF280A9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCPServer", "TCPServer\TCPServer.csproj", "{22D7C4F2-AAC5-4239-9482-7F14A7F7980C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TCPServer", "TCPServer\TCPServer.csproj", "{22D7C4F2-AAC5-4239-9482-7F14A7F7980C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCPClient", "TCPClient\TCPClient.csproj", "{EA82ED14-63D9-4852-A803-4DDB8A9B2AF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TCPClient", "TCPClient\TCPClient.csproj", "{EA82ED14-63D9-4852-A803-4DDB8A9B2AF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snake", "Snake\Snake.csproj", "{C0DA557D-C799-4A58-AC0E-C992FBBA4A5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{EA82ED14-63D9-4852-A803-4DDB8A9B2AF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA82ED14-63D9-4852-A803-4DDB8A9B2AF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA82ED14-63D9-4852-A803-4DDB8A9B2AF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0DA557D-C799-4A58-AC0E-C992FBBA4A5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0DA557D-C799-4A58-AC0E-C992FBBA4A5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0DA557D-C799-4A58-AC0E-C992FBBA4A5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0DA557D-C799-4A58-AC0E-C992FBBA4A5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

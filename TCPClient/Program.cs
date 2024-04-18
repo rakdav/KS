@@ -3,7 +3,7 @@ using System.Net.Sockets;
 using System.Text;
 
 int port = 54321;
-IPAddress address = IPAddress.Parse("127.0.0.1");
+IPAddress address = IPAddress.Parse("192.168.113.2");
 Console.WriteLine("Введите сообщение");
 var messages = new string[] { "Hello server| Connect me",
     "Work mith me! Trust", "TERMINATE" };
