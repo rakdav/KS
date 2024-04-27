@@ -1,4 +1,8 @@
-﻿char[,] grid = new char[18, 18];
+﻿using System.Net;
+using System.Net.Sockets;
+using System.Text;
+
+char[,] grid = new char[18, 18];
 char[] snake = new char[4];
 Array.Fill(snake, 'X');
 int[,] geoSnake = new int[4, 2];
@@ -36,6 +40,10 @@ do
                     int y = geoSnake[i, 1];
                     grid[x, y] = 'X';
                 }
+                using var udpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                byte[] data = Encoding.UTF8.GetBytes($"{geoSnake[0, 0]}:{geoSnake[0,1]}");
+                EndPoint remotePoint = new IPEndPoint(IPAddress.Parse("192.168.113.249"), 5555);
+                int bytes = await udpSocket.SendToAsync(data, remotePoint);
             }
             break;
         case 's':
@@ -54,6 +62,10 @@ do
                     int y = geoSnake[i, 1];
                     grid[x, y] = 'X';
                 }
+                using var udpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                byte[] data = Encoding.UTF8.GetBytes($"{geoSnake[0, 0]}:{geoSnake[0, 1]}");
+                EndPoint remotePoint = new IPEndPoint(IPAddress.Parse("192.168.113.249"), 5555);
+                int bytes = await udpSocket.SendToAsync(data, remotePoint);
             }
             break;
         case 'a':
@@ -72,6 +84,10 @@ do
                     int y = geoSnake[i, 1];
                     grid[x, y] = 'X';
                 }
+                using var udpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                byte[] data = Encoding.UTF8.GetBytes($"{geoSnake[0, 0]}:{geoSnake[0, 1]}");
+                EndPoint remotePoint = new IPEndPoint(IPAddress.Parse("192.168.113.249"), 5555);
+                int bytes = await udpSocket.SendToAsync(data, remotePoint);
             }
             break;
         case 'w':
@@ -90,6 +106,10 @@ do
                     int y = geoSnake[i, 1];
                     grid[x, y] = 'X';
                 }
+                using var udpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                byte[] data = Encoding.UTF8.GetBytes($"{geoSnake[0, 0]}:{geoSnake[0, 1]}");
+                EndPoint remotePoint = new IPEndPoint(IPAddress.Parse("192.168.113.249"), 5555);
+                int bytes = await udpSocket.SendToAsync(data, remotePoint);
             }
             break;
     }
