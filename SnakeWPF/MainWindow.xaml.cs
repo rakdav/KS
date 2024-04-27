@@ -27,8 +27,8 @@ namespace SnakeWPF
         {
             InitializeComponent();
             figure = new Ellipse();
-            figure.Width = 100;
-            figure.Height = 100;
+            figure.Width = 50;
+            figure.Height = 50;
             figure.Fill = Brushes.Green;
             figure.Stroke = Brushes.Red;
             figure.StrokeThickness = 3;
@@ -39,11 +39,12 @@ namespace SnakeWPF
             figure.SetValue(Canvas.LeftProperty, X);
             gameTickTimer = new DispatcherTimer();
             gameTickTimer.Tick += Move;
-            gameTickTimer.Interval = TimeSpan.FromMilliseconds(500);
+            gameTickTimer.Interval = TimeSpan.FromMilliseconds(300);
             gameTickTimer.Start();
         }
         private void Move(object sender, EventArgs e)
         {
+            //Сапон Down
             switch (to)
             {
                 case 1:
@@ -99,6 +100,17 @@ namespace SnakeWPF
             to = 2;
             //X -= 10;
             //figure.SetValue(Canvas.LeftProperty, X);
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key.ToString())
+            {
+                case "Down": to = 4; break;
+                case "Up": to = 3; break;
+                case "Left": to = 2; break;
+                case "Right": to = 1; break;
+            }
         }
     }
 }

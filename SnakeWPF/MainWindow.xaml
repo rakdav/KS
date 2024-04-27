@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SnakeWPF"
         mc:Ignorable="d"
-        Title="Змейка" Height="450" Width="800">
+        Title="Змейка" Height="450" Width="800" KeyDown="Window_KeyDown">
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
